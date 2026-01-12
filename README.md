@@ -1,6 +1,6 @@
 # ClickHouse Retail Analytics Dashboard
 
-An end-to-end merchant intelligence analytics project built on top of ClickHouse, using the RetailRocket recommender system dataset.  
+An end-to-end merchant intelligence analytics project built on top of ClickHouse, using the [RetailRocket recommender system dataset](https://www.kaggle.com/datasets/retailrocket/ecommerce-dataset/data).  
 The project ingests raw user interaction events, computes daily and product-level engagement metrics, stores them in ClickHouse, and exposes insights through an interactive Streamlit dashboard.
 
 This project demonstrates:

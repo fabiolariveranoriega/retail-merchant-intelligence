@@ -105,7 +105,7 @@ All views are backed directly by ClickHouse queries, ensuring sub-second respons
 
 ## How to Run
 
-### 1️. Install Dependencies
+### 1. Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```

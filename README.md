@@ -58,7 +58,7 @@ This project answers those questions using analytics at scale.
 
 ## Dataset
 
-RetailRocket Recommender System Dataset containing event-level data. It includes:
+RetailRocket Recommender System Dataset containing **event-level data**. It includes:
 - User interactions (view, add-to-cart, transaction)
 - Timestamps
 - Product identifiers
@@ -90,6 +90,8 @@ Metrics are materialized and stored in ClickHouse for fast aggregation.
 
 ## Dashboard Features (Streamlit)
 
+![System Architecture](images/dashboard.png)
+
 The interactive dashboard provides:
 
 - Top Engagement Products
@@ -108,6 +110,13 @@ All views are backed directly by ClickHouse queries, ensuring sub-second respons
 ```bash
 pip install -r requirements.txt
 ```
+
+### 3. Setup Database
+Execute SQL queries in `sql/db_tables.sql`
+
+This will:
+- Create database
+- Create table
 
 ### 2. Run Pipeline
 ```bash

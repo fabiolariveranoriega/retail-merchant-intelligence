@@ -37,18 +37,33 @@ class EventData(Data):
     def compute_metrics(self):
         self.events['date'] = self.events['timestamp'].dt.date
 
-        # counts how many views, add-to-carts, and transactions happened for each product on each day
-        # converts event level like 'view', 'addtocart', and 'transaction' into separate cols. 
-        # if a product has no events of a certain type, pandas fills it with 0. 
-        metrics = self.events.groupby(['date', 'product_id', 'event']).size().unstack(fill_value=0)
+        metrics = (
+            self.events
+                .groupby(['date', 'product_id', 'event'])
+                .size()
+                .unstack(fill_value=0)
+        )
 
-        metrics['impressions'] = metrics['view']
-        metrics['clicks'] = metrics['addtocart'] + metrics['transaction']
+        metrics['impressions'] = metrics.get('view', 0)
+        metrics['clicks'] = metrics.get('addtocart', 0) + metrics.get('transaction', 0)
 
-        # click through rate = (add to cart + transaction) / view
-        metrics['ctr'] = metrics['clicks'] / metrics['impressions'].replace(0,1) # prevents division by 0 if prod had 0 impressions
+        metrics['ctr'] = metrics['clicks'] / metrics['impressions'].replace(0, 1)
+
         
-        metrics.reset_index()
+        metrics = metrics.reset_index()
+
+        metrics = metrics.astype({
+            'product_id': int,
+            'addtocart': int,
+            'transaction': int,
+            'view': int,
+            'impressions': int,
+            'clicks': int,
+            'ctr': float
+        })
+
+        self.events = metrics
+
 
 
     def to_csv(self, data_path:str):

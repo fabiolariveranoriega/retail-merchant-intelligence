@@ -7,7 +7,6 @@ This project demonstrates:
 - Analytical data modeling
 - ClickHouse-optimized metric computation
 - Scalable event-level analytics
-- Business-oriented KPI dashboards for retail decision-making
 
 ---
 
@@ -18,7 +17,7 @@ E-commerce teams need fast, reliable answers to questions like:
 - Which products drive the most engagement?
 - Which products have high CTR but low volume (hidden opportunities)?
 - Which products are declining in engagement?
-- How does user activity trend daily?
+- How does event activity trend daily?
 - What should be promoted, fixed, or retired?
 
 This project answers those questions using analytics at scale.
@@ -111,14 +110,14 @@ All views are backed directly by ClickHouse queries, ensuring sub-second respons
 pip install -r requirements.txt
 ```
 
-### 3. Setup Database
+### 2. Setup Database
 Execute SQL queries in `sql/db_tables.sql`
 
 This will:
 - Create database
 - Create table
 
-### 2. Run Pipeline
+### 3. Run Pipeline
 ```bash
 python -m src.main --path data/events.csv --table merchant_intelligence.events
 ```
@@ -129,7 +128,7 @@ This will:
 - Compute metrics
 - Upload tables to ClickHouse
 
-### 3. Launch Dashboard
+### 4. Launch Dashboard
 ```bash
 streamlit run dashboard/app.py
 ```
